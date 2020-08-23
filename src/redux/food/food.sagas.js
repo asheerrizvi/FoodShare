@@ -1,11 +1,11 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
+import { takeLatest, put, all, call } from 'redux-saga/effects';
 
-import FoodActionTypes from "./food.types";
+import FoodActionTypes from './food.types';
 
-import { createFood } from "../../utils/query";
+import { createFood } from '../../utils/query';
 
 function* startCreateFood(payload) {
-  console.log(payload);
+  console.log('Iam here: ' + payload);
   const { data } = yield call(createFood, payload);
   console.log(data);
 }

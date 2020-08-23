@@ -1,23 +1,23 @@
-import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:5000";
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 export const getFood = (token) => {
   return axios({
-    url: "/api/food",
-    method: "get",
+    url: '/api/foods/',
+    method: 'get',
     headers: {
-      Authorization: token,
+      'x-auth-token': token,
     },
   });
 };
 
 export const createFood = (data) => {
   return axios({
-    url: "http://localhost:5000/api/food/",
-    method: "post",
+    url: '/api/foods/',
+    method: 'post',
     data: { ...data },
     headers: {
-      Authorization: data.token,
+      'x-auth-token': data.token,
     },
   });
 };

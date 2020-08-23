@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
 const foodSchema = new mongoose.Schema({
   name: String,
@@ -32,4 +33,20 @@ const foodSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('food', foodSchema);
+const Food = mongoose.model('Food', foodSchema);
+
+function validateFood(food) {
+  const schema = Joi.object({
+    name: Joi.string().required().max(30),
+    description: Joi.string().max(120),
+    quantity: Joi.number(),
+    expiresOn: Joi.date().required(),
+    lat: Joi.number().required(),
+    long: Joi.number().required(),
+  });
+
+  return schema.validate(food);
+}
+
+module.exports.Food = Food;
+module.exports.validateFood = validateFood;
